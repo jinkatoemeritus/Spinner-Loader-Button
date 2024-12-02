@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookmark Button with Loader</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+
+    button {
+      position: relative;
+      width: 120px; /* Fixed width */
+      height: 40px; /* Fixed height */
+      font-size: 16px;
+      border: 2px solid #E5E5E5;
+      background-color: #FFF;
+      color: #222;
+      border-radius: 4px;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      background-color: #FFF;
+    }
+
+    .loader {
+      width: 20px;
+      height: 20px;
+      border: 3px solid transparent;
+      border-top: 3px solid #222;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    #buttonText {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="button-container">
+    <button id="bookmarkButton">
+      <span id="buttonText">Bookmark</span>
+      <div id="loader" class="loader"></div>
+    </button>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const button = document.getElementById("bookmarkButton");
+      const loader = document.getElementById("loader");
+      const buttonText = document.getElementById("buttonText");
+
+      button.addEventListener("click", function () {
+        button.setAttribute("disabled", true);
+        buttonText.style.display = "none";
+        loader.style.display = "inline-block";
+
+        // Simulate a delay for demonstration (e.g., 3 seconds)
+        setTimeout(() => {
+          button.removeAttribute("disabled");
+          buttonText.style.display = "inline";
+          loader.style.display = "none";
+        }, 3000);
+      });
+    });
+  </script>
+</body>
+</html>
